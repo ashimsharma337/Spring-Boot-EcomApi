@@ -17,14 +17,14 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 	private String name;
 	private String email;
 	private String password;
 	private String address;
 	
 	//getters
-	  public Long getId(){
+	  public int getId(){
 	     return this.id;
 	  }
 
@@ -45,7 +45,7 @@ public class User {
 	  }
 	  
 	//setters
-	  public void setId(Long id){
+	  public void setId(int id){
 	     this.id = id;
 	  }
 
