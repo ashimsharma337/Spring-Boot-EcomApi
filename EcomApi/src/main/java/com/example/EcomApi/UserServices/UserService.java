@@ -1,4 +1,4 @@
-package com.example.EcomApi.UserService;
+package com.example.EcomApi.UserServices;
 
 import java.util.List;
 
