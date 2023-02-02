@@ -2,15 +2,27 @@ package com.example.EcomApi.UserServices.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.EcomApi.Entities.User;
 import com.example.EcomApi.Payloads.UserDto;
+import com.example.EcomApi.Repositories.UserRepo;
 import com.example.EcomApi.UserServices.UserService;
 
 public class UserServiceImpl implements UserService {
-
+    
+	@Autowired
+	private UserRepo userRepo;
+	
+	
 	@Override
-	public UserDto createUser(UserDto user) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDto createUser(UserDto userDto) {
+        
+		User user = this.dtoToUser(userDto);
+		
+		User savedUser = this.userRepo.save(user);
+
+		return this.userToDto(savedUser);
 	}
 
 	@Override
@@ -36,5 +48,33 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	
+	//without model mapper
+	public User dtoToUser(UserDto userDto) 
+	{
+       //creating user object
+		User user = new User();
+		user.setId(userDto.getId());
+		user.setName(userDto.getName());
+		user.setEmail(userDto.getEmail());
+		user.setPassword(userDto.getPassword());
+		user.setAddress(userDto.getPassword());
+		
+		return user;
+		
+    }
+	
+	public UserDto userToDto(User user)
+	{
+		UserDto userDto = new UserDto();
+		userDto.setId(user.getId());
+		userDto.setName(user.getName());
+		userDto.setEmail(user.getEmail());
+		userDto.setPassword(user.getPassword());
+		userDto.setAddress(user.getAddress());
+		
+		return userDto;
+		
+	}
 }
