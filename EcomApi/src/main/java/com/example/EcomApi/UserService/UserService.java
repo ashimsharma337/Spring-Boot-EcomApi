@@ -1,11 +1,11 @@
 package com.example.EcomApi.UserService;
 
-import com.example.EcomApi.Entities.User;
+import com.example.EcomApi.Payloads.UserDto;
 
 public interface UserService {
       
 	//create user
-	User createUser(User user);
+	UserDto createUser(UserDto user);
 	
 	
 }
