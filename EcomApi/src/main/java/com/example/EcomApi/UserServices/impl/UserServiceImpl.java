@@ -8,6 +8,7 @@ import com.example.EcomApi.Entities.User;
 import com.example.EcomApi.Payloads.UserDto;
 import com.example.EcomApi.Repositories.UserRepo;
 import com.example.EcomApi.UserServices.UserService;
+import com.example.EcomApi.Exceptions.*;
 
 public class UserServiceImpl implements UserService {
     
@@ -26,9 +27,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto updateUser(UserDto user, Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDto updateUser(UserDto userDto, Integer userId) {
+		
+		User user = this.userRepo.findById(userId)
+				.orElseThrow(()-> new ResourceNotFoundException("User", "User Id", userId));
+		
+		
+		user.setName(userDto.getName());
+		user.setEmail(userDto.getEmail());
+		user.setPassword(userDto.getPassword());
+		user.setAddress(userDto.getAddress());
+		
+		User updatedUser = this.userRepo.save(user);
+		UserDto userDto1 = this.userToDto(updatedUser);
+		
+		return userDto1;
+		
 	}
 
 	@Override
