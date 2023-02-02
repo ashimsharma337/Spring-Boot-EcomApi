@@ -1,9 +1,12 @@
 package com.example.EcomApi.Entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Table
+@Table(name="users")
 @Entity
 public class User {
 
