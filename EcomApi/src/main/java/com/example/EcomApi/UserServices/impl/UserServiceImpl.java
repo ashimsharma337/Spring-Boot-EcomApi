@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.EcomApi.Entities.User;
 import com.example.EcomApi.Payloads.UserDto;
@@ -11,6 +12,7 @@ import com.example.EcomApi.Repositories.UserRepo;
 import com.example.EcomApi.UserServices.UserService;
 import com.example.EcomApi.Exceptions.*;
 
+@Service
 public class UserServiceImpl implements UserService {
     
 	@Autowired
