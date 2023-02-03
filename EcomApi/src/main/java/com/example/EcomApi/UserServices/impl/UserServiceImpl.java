@@ -1,6 +1,7 @@
 package com.example.EcomApi.UserServices.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -56,8 +57,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDto> getAllusers() {
-		// TODO Auto-generated method stub
-		return null;
+	    
+		List<User> users = this.userRepo.findAll();
+		
+		List<UserDto> userDtos = users.stream().map(user->this.userToDto(user)).collect(Collectors.toList());
+		
+		
+		return userDtos;
 	}
 
 	@Override
